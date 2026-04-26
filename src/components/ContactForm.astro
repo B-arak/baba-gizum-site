@@ -1,0 +1,26 @@
+---
+import { SITE } from '../data/site';
+// Formspree טופס חינמי — צריך להחליף את ה-action בקישור שתקבל מהרשמה ב-formspree.io
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/yourFormID';
+---
+<form action={FORMSPREE_ENDPOINT} method="POST" class="bg-white rounded-2xl p-6 sm:p-8 shadow-strong space-y-4">
+  <div>
+    <label for="name" class="block text-sm font-semibold text-forest-800 mb-1">שם מלא</label>
+    <input type="text" id="name" name="name" required class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200" />
+  </div>
+  <div>
+    <label for="phone" class="block text-sm font-semibold text-forest-800 mb-1">טלפון</label>
+    <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]{9,15}" class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200" />
+  </div>
+  <div>
+    <label for="city" class="block text-sm font-semibold text-forest-800 mb-1">עיר/יישוב</label>
+    <input type="text" id="city" name="city" required class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200" />
+  </div>
+  <div>
+    <label for="message" class="block text-sm font-semibold text-forest-800 mb-1">תיאור קצר (סוג עץ, גובה, כמות)</label>
+    <textarea id="message" name="message" rows="4" class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200"></textarea>
+  </div>
+  <input type="hidden" name="_subject" value="פנייה חדשה מאתר בב״א גיזום" />
+  <button type="submit" class="btn-primary w-full text-base">שלח/י וקבל/י הצעת מחיר</button>
+  <p class="text-sm text-forest-600 text-center">או — שלחו תמונה ישירות בוואטסאפ ל־ <a href={`https://wa.me/${SITE.whatsapp}`} class="font-semibold underline">{SITE.phone}</a></p>
+</form>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQSchema from '../components/FAQSchema.astro';
+import { SITE } from '../data/site';
+
+const pricingTable = [
+  { service: 'גיזום עץ קטן (עד 4 מטר)', price: '300 - 600 ₪', notes: 'הדרים, זית קטן, רימון, מנגו צעיר' },
+  { service: 'גיזום עץ בינוני (4-8 מטר)', price: '700 - 1,500 ₪', notes: 'פיקוס, אקליפטוס בינוני, אורן' },
+  { service: 'גיזום עץ גדול (8 מטר ומעלה)', price: '1,500 - 3,000 ₪', notes: 'תלוי בגובה, נגישות וכמות עבודה' },
+  { service: 'גיזום דקל וושינגטוניה (עד 12 מ׳)', price: '500 - 900 ₪', notes: 'דקל גבוה במיוחד — תוספת בהתאם' },
+  { service: 'גיזום דקל תמר/קנרי', price: '350 - 800 ₪', notes: 'תלוי בגיל ובמורכבות' },
+  { service: 'כריתת עץ קטן', price: 'מ-500 ₪', notes: 'כולל פינוי. לא כולל כרסום שורש' },
+  { service: 'כריתת עץ בינוני-גדול', price: '1,000 - 3,500 ₪', notes: 'כולל פינוי. תלוי בגובה ונגישות' },
+  { service: 'כרסום גזע (פנפ)', price: '300 - 800 ₪', notes: 'תלוי בגודל הגזע ובסוג העץ' },
+  { service: 'פינוי גזם בלבד', price: 'מ-250 ₪', notes: 'תלוי בכמות' },
+  { service: 'ביקור הערכה', price: 'חינם', notes: 'במקרים שדורשים בדיקה בשטח לפני תמחור' }
+];
+
+const faqs = [
+  { q: 'למה המחירים בטווח?', a: 'כי כל עץ שונה. הגובה, הנגישות, סוג העץ, כמות העבודה הנדרשת — כל אלה משפיעים על המחיר. הטווח שתראו במחירון הוא הטווח האמיתי. לקבלת מחיר מדויק שלחו תמונה בוואטסאפ.' },
+  { q: 'האם המחירים כוללים מע״מ?', a: 'המחירים לא כוללים מע"מ. הסכום הסופי כולל 17% מע"מ.' },
+  { q: 'האם יש תוספת על נסיעה?', a: 'במרכז הארץ ובערים שאנחנו פועלים בהן באופן קבוע — אין תוספת. ביישובים מרוחקים יתכן עלות נסיעה מינימלית, וזה ייאמר מראש בהצעת המחיר.' },
+  { q: 'מתי משלמים?', a: 'התשלום בסיום העבודה, אחרי שאתם בודקים שהכל בסדר. במזומן, בהעברה בנקאית או באפליקציה (ביט/פייבוקס).' },
+  { q: 'יש הנחה ליותר מעץ אחד?', a: 'בוודאי. עבודה של מספר עצים באותו ביקור — ההגעה כבר נעשתה ויש חיסכון משמעותי בעלות. שלחו תמונות של כל העצים ונציע חבילה.' }
+];
+---
+<BaseLayout
+  title={'מחירון גיזום וכריתת עצים 2026 | בב״א גיזום — מחירים שקופים'}
+  description="מחירון מלא של שירותי גיזום וכריתת עצים, גיזום דקלים, כרסום גזעים ופינוי גזם. מחירים שקופים, ללא הפתעות. גוזם מוסמך משרד החקלאות בכל הארץ."
+>
+  <FAQSchema slot="head-extra" faqs={faqs} />
+
+  <section class="bg-gradient-to-bl from-forest-900 via-forest-800 to-forest-700 text-white">
+    <div class="container-x section">
+      <h1 class="h1 text-white mb-5">מחירון גיזום וכריתה 2026</h1>
+      <p class="lead !text-sand-100 max-w-2xl">מחירים שקופים, ללא הפתעות. הטווחים מטה הם המחירים האמיתיים — לקבלת מחיר מדויק לעץ הספציפי שלכם, שלחו תמונה בוואטסאפ.</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-x">
+      <div class="overflow-x-auto rounded-2xl shadow-soft">
+        <table class="w-full bg-white text-right">
+          <thead class="bg-forest-700 text-white">
+            <tr>
+              <th class="px-6 py-4 text-right font-bold">השירות</th>
+              <th class="px-6 py-4 text-right font-bold">מחיר</th>
+              <th class="px-6 py-4 text-right font-bold hidden sm:table-cell">הערות</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pricingTable.map((row, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-forest-50'}>
+                <td class="px-6 py-4 font-semibold text-forest-900">{row.service}</td>
+                <td class="px-6 py-4 text-forest-800">{row.price}</td>
+                <td class="px-6 py-4 text-forest-700 text-sm hidden sm:table-cell">{row.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-forest-600 mt-4 text-center">* המחירים אינם כוללים מע"מ. לקבלת הצעת מחיר מדויקת — שלחו תמונה בוואטסאפ ל-<a href={`https://wa.me/${SITE.whatsapp}`} class="font-semibold underline">{SITE.phone}</a>.</p>
+    </div>
+  </section>
+
+  <section class="section bg-sand-50">
+    <div class="container-x max-w-3xl">
+      <h2 class="h2 text-center mb-10">מה משפיע על המחיר?</h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="card">
+          <h3 class="h3 mb-2">גובה העץ</h3>
+          <p class="text-forest-700">ככל שהעץ גבוה יותר, הזמן והמורכבות עולים. זה ההבדל הכי משמעותי במחיר.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3 mb-2">נגישות</h3>
+          <p class="text-forest-700">חצר פתוחה עם גישה לרכב = יותר מהר ויותר זול. גג, חדר משאית או חצר אחורית = יותר עבודה.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3 mb-2">סוג העץ</h3>
+          <p class="text-forest-700">לעצים שונים יש שיטות גיזום שונות, חלקם דורשים יותר זמן ועדינות (זית בוגר למשל).</p>
+        </div>
+        <div class="card">
+          <h3 class="h3 mb-2">כמות הגזם</h3>
+          <p class="text-forest-700">פינוי גזם זה זמן וכסף. יותר ענפים = יותר זמן בפינוי ובהובלה לאתר פסולת.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-x max-w-4xl">
+      <h2 class="h2 text-center mb-10">שאלות נפוצות על המחירון</h2>
+      <div class="space-y-3">
+        {faqs.map(faq => (
+          <details class="group bg-sand-50 rounded-xl">
+            <summary class="flex items-center justify-between cursor-pointer px-6 py-5 font-semibold text-forest-900">
+              <span>{faq.q}</span>
+              <svg class="w-5 h-5 text-forest-600 group-open:rotate-180 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-forest-700/90 leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import { SITE } from '../data/site';
+const navLinks = [
+  { href: '/', label: 'בית' },
+  { href: '/services/gizum-etzim', label: 'גיזום עצים' },
+  { href: '/services/kritat-etzim', label: 'כריתת עצים' },
+  { href: '/services/gizum-deklim', label: 'גיזום דקלים' },
+  { href: '/pricing', label: 'מחירון' },
+  { href: '/about', label: 'אודות' },
+  { href: '/blog', label: 'בלוג' },
+  { href: '/contact', label: 'צרו קשר' }
+];
+---
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-forest-100">
+  <div class="container-x flex items-center justify-between h-16 lg:h-20">
+    <a href="/" class="flex items-center gap-2 group" aria-label="בב״א גיזום — בית">
+      <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-forest-700 text-white font-bold text-lg group-hover:bg-forest-800 transition">בב</span>
+      <span class="font-display font-bold text-xl text-forest-900">{SITE.name}</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-1" aria-label="ניווט ראשי">
+      {navLinks.map(link => (
+        <a href={link.href} class="px-3 py-2 rounded-lg text-forest-800 hover:bg-forest-50 hover:text-forest-900 font-medium transition">
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={`tel:${SITE.phoneRaw}`} class="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.515l.7 2.793a2 2 0 01-.45 1.847L8.09 10.91a16 16 0 005 5l1.755-1.38a2 2 0 011.847-.45l2.793.7A2 2 0 0121 16.72V19a2 2 0 01-2 2A16 16 0 013 5z"/></svg>
+        {SITE.phone}
+      </a>
+      <button id="mobile-menu-toggle" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-forest-800 hover:bg-forest-50" aria-label="פתח תפריט">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-forest-100 bg-white">
+    <nav class="container-x py-4 flex flex-col" aria-label="תפריט נייד">
+      {navLinks.map(link => (
+        <a href={link.href} class="py-2.5 px-2 text-forest-800 hover:text-forest-900 font-medium border-b border-forest-50">{link.label}</a>
+      ))}
+      <a href={`tel:${SITE.phoneRaw}`} class="btn-primary mt-3 text-sm">{SITE.phone} • התקשרו עכשיו</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

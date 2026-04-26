@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE } from '../data/site';
+---
+<BaseLayout
+  title="צרו קשר עם בב״א גיזום | טלפון, וואטסאפ וטופס יצירת קשר"
+  description="צרו קשר עם בב״א גיזום לקבלת הצעת מחיר. שלחו תמונה בוואטסאפ או התקשרו. שירות מהיר בכל הארץ."
+>
+  <section class="bg-gradient-to-bl from-forest-900 via-forest-800 to-forest-700 text-white">
+    <div class="container-x section">
+      <h1 class="h1 text-white mb-5">צרו קשר</h1>
+      <p class="lead !text-sand-100 max-w-2xl">הדרך המהירה ביותר לקבל הצעת מחיר היא לשלוח תמונה בוואטסאפ. אנחנו עונים מהר.</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-x grid lg:grid-cols-2 gap-10">
+      <div class="space-y-6">
+        <div>
+          <h2 class="h2 mb-3">דרכי יצירת קשר</h2>
+          <p class="text-forest-700 leading-relaxed">בחרו את הדרך הנוחה לכם. בכל ערוץ אנחנו עונים בתוך זמן סביר בשעות הפעילות.</p>
+        </div>
+
+        <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener" class="card flex items-center gap-4 hover:bg-forest-50 transition group">
+          <div class="w-14 h-14 rounded-2xl bg-[#25D366] text-white flex items-center justify-center flex-shrink-0">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.6 6.32A8.78 8.78 0 0012 4 8.84 8.84 0 003.16 12.84 8.7 8.7 0 004.4 17.5L4 20l2.6-.36A8.83 8.83 0 0012 21.68 8.84 8.84 0 0020.84 12.84 8.78 8.78 0 0017.6 6.32z"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="h3 mb-1">וואטסאפ — מומלץ</h3>
+            <p class="text-forest-700">{SITE.phone} • שלחו תמונה ותקבלו הצעת מחיר תוך דקות</p>
+          </div>
+        </a>
+
+        <a href={`tel:${SITE.phoneRaw}`} class="card flex items-center gap-4 hover:bg-forest-50 transition group">
+          <div class="w-14 h-14 rounded-2xl bg-forest-700 text-white flex items-center justify-center flex-shrink-0">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.515l.7 2.793a2 2 0 01-.45 1.847L8.09 10.91a16 16 0 005 5l1.755-1.38a2 2 0 011.847-.45l2.793.7A2 2 0 0121 16.72V19a2 2 0 01-2 2A16 16 0 013 5z"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="h3 mb-1">טלפון</h3>
+            <p class="text-forest-700">{SITE.phone}</p>
+          </div>
+        </a>
+
+        <a href={`mailto:${SITE.email}`} class="card flex items-center gap-4 hover:bg-forest-50 transition group">
+          <div class="w-14 h-14 rounded-2xl bg-sand-300 text-forest-900 flex items-center justify-center flex-shrink-0">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="h3 mb-1">דוא״ל</h3>
+            <p class="text-forest-700">{SITE.email}</p>
+          </div>
+        </a>
+
+        <div class="card">
+          <h3 class="h3 mb-2">שעות פעילות</h3>
+          <p class="text-forest-700">{SITE.hours}</p>
+          <p class="text-forest-700 mt-1 text-sm">מקרים דחופים — אפשר להתקשר גם מחוץ לשעות הפעילות.</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="h2 mb-5">או — שלחו פנייה כאן</h2>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

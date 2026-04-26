@@ -1,0 +1,58 @@
+---
+import { SITE, SERVICES, CITIES } from '../data/site';
+const year = new Date().getFullYear();
+const popularCities = CITIES.slice(0, 8);
+---
+<footer class="bg-forest-900 text-sand-100 mt-12">
+  <div class="container-x py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-forest-600 text-white font-bold">בב</span>
+        <span class="font-display font-bold text-xl">{SITE.name}</span>
+      </div>
+      <p class="text-sand-200/90 leading-relaxed">{SITE.tagline}. גוזם וכורת מוסמך באישור משרד החקלאות, תעודה לעבודה בגובה.</p>
+    </div>
+
+    <div>
+      <h4 class="font-bold mb-4 text-white">שירותים</h4>
+      <ul class="space-y-2">
+        {SERVICES.map(s => (
+          <li><a href={`/services/${s.slug}`} class="text-sand-200/90 hover:text-white transition">{s.title}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-bold mb-4 text-white">אזורי שירות</h4>
+      <ul class="grid grid-cols-2 gap-2">
+        {popularCities.map(c => (
+          <li><a href={`/areas/${c.slug}`} class="text-sand-200/90 hover:text-white transition">{c.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-bold mb-4 text-white">צרו קשר</h4>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-2">
+          <svg class="w-5 h-5 mt-0.5 text-forest-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.515l.7 2.793a2 2 0 01-.45 1.847L8.09 10.91a16 16 0 005 5l1.755-1.38a2 2 0 011.847-.45l2.793.7A2 2 0 0121 16.72V19a2 2 0 01-2 2A16 16 0 013 5z"/></svg>
+          <a href={`tel:${SITE.phoneRaw}`} class="hover:text-white">{SITE.phone}</a>
+        </li>
+        <li class="flex items-start gap-2">
+          <svg class="w-5 h-5 mt-0.5 text-forest-300" fill="currentColor" viewBox="0 0 24 24"><path d="M17.6 6.32A8.78 8.78 0 0012 4 8.84 8.84 0 003.16 12.84 8.7 8.7 0 004.4 17.5L4 20l2.6-.36A8.83 8.83 0 0012 21.68 8.84 8.84 0 0020.84 12.84 8.78 8.78 0 0017.6 6.32zM12 20.18a7.34 7.34 0 01-3.7-1l-.27-.16-1.55.21.21-1.5-.18-.28A7.36 7.36 0 0119.34 12.84 7.34 7.34 0 0112 20.18z"/></svg>
+          <a href={`https://wa.me/${SITE.whatsapp}`} class="hover:text-white" target="_blank" rel="noopener">וואטסאפ — שלחו תמונה לקבלת הצעת מחיר</a>
+        </li>
+        <li class="flex items-start gap-2">
+          <svg class="w-5 h-5 mt-0.5 text-forest-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span class="text-sand-200/90">{SITE.hours}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-forest-800/60">
+    <div class="container-x py-5 text-center text-sm text-sand-200/70">
+      © {year} {SITE.name}. כל הזכויות שמורות. גוזם וכורת מוסמך משרד החקלאות.
+    </div>
+  </div>
+</footer>

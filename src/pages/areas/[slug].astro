@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import FAQSchema from '../../components/FAQSchema.astro';
+import { SITE, CITIES, SERVICES } from '../../data/site';
+
+export function getStaticPaths() {
+  return CITIES.map(city => ({
+    params: { slug: city.slug },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+
+const title = `גיזום עצים ב${city.name} — בב״א גיזום | החל מ-250 ₪, גוזם מוסמך`;
+const description = `שירות גיזום עצים, כריתת עצים וגיזום דקלים ב${city.name} ובסביבה. גוזם מוסמך משרד החקלאות עם תעודת עבודה בגובה. שלחו תמונה בוואטסאפ לקבלת הצעת מחיר.`;
+
+const faqs = [
+  { q: `כמה זמן לוקח להגיע ל${city.name}?`, a: `אנחנו עובדים ב${city.name} כמעט מדי שבוע, ובדרך כלל אפשר להגיע תוך 1-3 ימי עסקים. במקרים דחופים — באותו יום או למחרת.` },
+  { q: `מהו טווח המחירים לעבודות גיזום ב${city.name}?`, a: 'עץ קטן עד 4 מטר: 300-600 ₪. עץ בינוני 4-8 מטר: 700-1,500 ₪. עצים גדולים: 1,500 ₪ ומעלה. שלחו תמונה בוואטסאפ לקבלת הצעת מחיר מדויקת.' },
+  { q: 'אתם מסייעים בקבלת אישורי כריתה מהעירייה?', a: `כן. אנחנו מכירים את התהליך מול פקידי היערות בעיריות במרכז ובסביבה, ויכולים לעזור בהכנת הבקשה ובמעקב אחריה.` },
+  { q: 'האם יש תוספת תשלום על נסיעה?', a: `ל${city.name} אין תוספת — אנחנו עובדים שם באופן קבוע. רק ביישובים מרוחקים מאוד יתכן עלות נסיעה מינימלית, וזה ייאמר מראש.` }
+];
+---
+<BaseLayout title={title} description={description}>
+  <FAQSchema slot="head-extra" faqs={faqs} />
+
+  <section class="bg-gradient-to-bl from-forest-900 via-forest-800 to-forest-700 text-white">
+    <div class="container-x section">
+      <nav class="text-sm text-sand-200 mb-4" aria-label="פירורי לחם">
+        <a href="/" class="hover:text-white">בית</a>
+        <span class="mx-2">›</span>
+        <a href="/#areas" class="hover:text-white">אזורי שירות</a>
+        <span class="mx-2">›</span>
+        <span class="text-white">{city.name}</span>
+      </nav>
+
+      <div class="grid lg:grid-cols-3 gap-10 items-start">
+        <div class="lg:col-span-2">
+          <span class="eyebrow !text-accent-500">אזור {city.region}</span>
+          <h1 class="h1 text-white mb-5">גיזום וכריתת עצים ב{city.name}</h1>
+          <p class="lead !text-sand-100 max-w-2xl">
+            שירות מקצועי, מהיר ובמחיר הוגן ל{city.name} ולסביבה. גוזם מוסמך משרד החקלאות עם תעודת עבודה בגובה, מומחיות בגיזום ללא מנוף, ופינוי גזם מלא בסיום.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`שלום, אני מ${city.name} ואשמח להצעת מחיר.`)}`} target="_blank" rel="noopener" class="btn-whatsapp">שלחו תמונה בוואטסאפ</a>
+            <a href={`tel:${SITE.phoneRaw}`} class="btn-accent">{SITE.phone}</a>
+          </div>
+        </div>
+        <div class="hidden lg:block bg-white rounded-2xl p-1.5 shadow-strong">
+          <div class="bg-forest-900 rounded-xl px-5 py-3 text-white font-semibold">הצעת מחיר ל{city.name}</div>
+          <div class="p-5"><ContactForm /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-x grid lg:grid-cols-3 gap-10">
+      <article class="lg:col-span-2 space-y-6 text-forest-800 leading-relaxed">
+        <h2 class="h2 text-forest-900">השירותים שלנו ב{city.name}</h2>
+        <p>בב"א גיזום מספקת ל{city.name} את מלוא קשת שירותי הגיזום והכריתה — לבתים פרטיים, בתי משותפים, ועדי בית, מוסדות וגינות מסחריות. אנחנו מכירים את העיר, את הצמחיה האופיינית לה ואת הדרישות של פקיד היערות המקומי, ויכולים לטפל בכל מקרה שתביאו אלינו.</p>
+
+        <div class="grid sm:grid-cols-2 gap-4 not-prose">
+          {SERVICES.map(s => (
+            <a href={`/services/${s.slug}`} class="card block hover:bg-forest-50 transition">
+              <h3 class="font-bold text-forest-900 mb-1">{s.title} ב{city.name}</h3>
+              <p class="text-sm text-forest-700/80">{s.short}</p>
+            </a>
+          ))}
+        </div>
+
+        <h2 class="h2 text-forest-900">למה לבחור בנו ב{city.name}?</h2>
+        <p>במרכז הארץ ובאזור {city.region} יש לא מעט חברות גיזום, ולפעמים זה מבלבל לבחור. הנה מה שאנחנו מביאים שלא תמיד תמצאו במקומות אחרים:</p>
+        <ul class="list-disc pr-5 space-y-2">
+          <li><strong>גיזום ללא מנוף:</strong> חוסכים לכם 500-1,200 ₪ בכל עבודה. רק במקרים נדירים שדורשים מנוף — נציע פתרון.</li>
+          <li><strong>אישורים אמיתיים:</strong> תעודת גוזם וכורת מטעם משרד החקלאות, תעודת עבודה בגובה. אפשר לקבל לצפייה.</li>
+          <li><strong>מחיר מראש:</strong> שלחו תמונה ותקבלו הצעת מחיר ברורה ומחייבת. בלי הפתעות בסוף.</li>
+          <li><strong>פינוי גזם מלא:</strong> אנחנו עוזבים את השטח נקי לגמרי. בלי לחפש מי יפנה ענפים אחרינו.</li>
+          <li><strong>זמינות גבוהה ב{city.name}:</strong> אנחנו עובדים באזור באופן קבוע — בדרך כלל אפשר להגיע תוך 2-3 ימי עסקים.</li>
+        </ul>
+
+        <h2 class="h2 text-forest-900">סוגי העצים הנפוצים ב{city.name}</h2>
+        <p>בכל אזור יש את הצמחיה האופיינית לו, ובאזור {city.region} נפגשים בעיקר עם פיקוסים גדולים, אקליפטוסים, וושינגטוניות (דקלים גבוהים), עצי זית, חרובים, אורנים, אקציה ועצי הדר ופרי בגינות פרטיות. לכל אחד מהם שיטת גיזום ועונה מועדפת — אנחנו יודעים מה לעשות ומתי.</p>
+
+        <h2 class="h2 text-forest-900">תהליך העבודה</h2>
+        <ol class="list-decimal pr-5 space-y-2">
+          <li><strong>שולחים תמונה בוואטסאפ ל-{SITE.phone}</strong> — אנחנו מחזירים הצעת מחיר תוך דקות.</li>
+          <li><strong>קובעים מועד נוח</strong> — בדרך כלל בתוך 2-3 ימים.</li>
+          <li><strong>מגיעים בזמן ועובדים מקצועית</strong> — עם כל האישורים והבטיחות.</li>
+          <li><strong>מפנים את כל הגזם</strong> — אתם משלמים בסיום, כשאתם מרוצים מהתוצאה.</li>
+        </ol>
+      </article>
+
+      <aside class="space-y-6">
+        <div class="bg-forest-50 rounded-2xl p-6 sticky top-24">
+          <h3 class="font-bold text-forest-900 mb-3">הצעת מחיר ל{city.name}</h3>
+          <p class="text-forest-700 mb-4 text-sm">שלחו תמונה ותקבלו מחיר תוך דקות.</p>
+          <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener" class="btn-whatsapp w-full mb-2">וואטסאפ</a>
+          <a href={`tel:${SITE.phoneRaw}`} class="btn-primary w-full">{SITE.phone}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section bg-sand-50">
+    <div class="container-x max-w-4xl">
+      <h2 class="h2 text-center mb-10">שאלות נפוצות מלקוחות ב{city.name}</h2>
+      <div class="space-y-3">
+        {faqs.map(faq => (
+          <details class="group bg-white rounded-xl shadow-soft overflow-hidden">
+            <summary class="flex items-center justify-between cursor-pointer px-6 py-5 font-semibold text-forest-900 hover:bg-forest-50">
+              <span>{faq.q}</span>
+              <svg class="w-5 h-5 text-forest-600 group-open:rotate-180 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-forest-700/90 leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-x max-w-4xl">
+      <h2 class="h2 text-center mb-8">אזורים נוספים בקרבת מקום</h2>
+      <div class="flex flex-wrap gap-2 justify-center">
+        {CITIES.filter(c => c.slug !== city.slug).map(c => (
+          <a href={`/areas/${c.slug}`} class="bg-forest-50 hover:bg-forest-100 px-4 py-2 rounded-lg text-forest-800 text-sm font-medium transition">
+            גיזום ב{c.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
