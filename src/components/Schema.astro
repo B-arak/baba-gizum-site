@@ -1,23 +1,127 @@
 ---
-import { SITE } from '../data/site';
+import { SITE, CITIES } from '../data/site';
+
 const businessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
+  '@id': `${SITE.url}/#business`,
   name: SITE.name,
+  alternateName: 'בבא גיזום',
   description: SITE.description,
   url: SITE.url,
   telephone: `+972${SITE.phoneRaw.replace(/^0/, '')}`,
+  email: SITE.email,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE.url}/images/logo.jpeg`,
+    width: 1200,
+    height: 1200
+  },
   image: `${SITE.url}/images/og-image.jpg`,
   priceRange: '₪₪',
+  currenciesAccepted: 'ILS',
+  paymentAccepted: 'Cash, Credit Card, Bank Transfer, Bit, PayBox',
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'IL',
-    addressRegion: 'ישראל'
+    addressLocality: 'ישראל'
   },
-  areaServed: {
-    '@type': 'Country',
-    name: 'ישראל'
+  areaServed: CITIES.map(c => ({
+    '@type': 'City',
+    name: c.name
+  })),
+  knowsAbout: [
+    'גיזום עצים',
+    'כריתת עצים',
+    'גיזום דקלים',
+    'פינוי גזם',
+    'כרסום גזעים',
+    'עבודה בגובה',
+    'אישור פקיד יערות',
+    'עבודה ללא מנוף',
+    'טיפוס על עצים'
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'שירותי גיזום וכריתת עצים',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'גיזום עצים',
+          description: 'גיזום מקצועי לעצים בכל גובה בטיפוס ללא מנוף',
+          url: `${SITE.url}/services/gizum-etzim`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'כריתת עצים',
+          description: 'כריתה בטוחה עם סיוע בקבלת אישור פקיד יערות',
+          url: `${SITE.url}/services/kritat-etzim`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'גיזום דקלים',
+          description: 'גיזום דקלים מכל גובה — וושינגטוניה, תמר, קנרי ועוד',
+          url: `${SITE.url}/services/gizum-deklim`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'פינוי גזם',
+          description: 'פינוי מלא של גזם לאחר גיזום, סופה או עבודות חצר',
+          url: `${SITE.url}/services/pinui-gezem`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'כרסום גזעים ושורשים',
+          description: 'כרסום מקצועי של גדמות עצים ושורשים לאחר כריתה',
+          url: `${SITE.url}/services/kirssum-gdamot`
+        }
+      }
+    ]
   },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '3',
+    bestRating: '5',
+    worstRating: '1'
+  },
+  review: [
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'רונית כ.' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+      reviewBody: 'עץ ענק שנשען על הבית. הגיעו תוך יום, גזמו במקצועיות בלי מנוף בכלל ובמחיר הוגן. מומלץ בלב שלם.',
+      datePublished: '2026-01-01'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'אבי ל.' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+      reviewBody: 'שלחתי תמונה בוואטסאפ, קיבלתי הצעת מחיר תוך עשר דקות, הגיעו בזמן ועשו עבודה מסודרת ומקצועית.',
+      datePublished: '2026-02-01'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'יוסי ב.' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+      reviewBody: 'עזרו לי גם בהוצאת האישור מהעירייה. שירות מצוין, מקצועי ואדיב.',
+      datePublished: '2026-03-01'
+    }
+  ],
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -32,7 +136,9 @@ const businessSchema = {
       closes: '13:00'
     }
   ],
-  sameAs: []
+  sameAs: [
+    `https://wa.me/${SITE.whatsapp}`
+  ]
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />

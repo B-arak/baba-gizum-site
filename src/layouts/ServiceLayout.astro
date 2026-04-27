@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import FAQSchema from '../components/FAQSchema.astro';
+import ServiceSchema from '../components/ServiceSchema.astro';
 import { SITE } from '../data/site';
 
 interface Props {
@@ -13,9 +14,11 @@ interface Props {
 }
 
 const { title, description, h1, intro, faqs = [] } = Astro.props;
+const serviceUrl = `${SITE.url}${Astro.url.pathname}`;
 ---
 <BaseLayout title={title} description={description}>
   {faqs.length > 0 && <FAQSchema slot="head-extra" faqs={faqs} />}
+  <ServiceSchema slot="head-extra" name={h1} description={description} url={serviceUrl} />
 
   <section class="bg-gradient-to-bl from-forest-900 via-forest-800 to-forest-700 text-white">
     <div class="container-x section">

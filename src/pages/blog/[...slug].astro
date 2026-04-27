@@ -19,6 +19,39 @@ const formatDate = (d: Date) => new Intl.DateTimeFormat('he-IL', { dateStyle: 'l
 
 const heroImage = post.data.heroImage ?? SITE.socialImage;
 const heroAlt  = post.data.heroAlt  ?? post.data.title;
+const canonicalUrl = `${SITE.url}/blog/${post.slug}`;
+
+// HowTo schema for step-by-step posts
+const howToSchemas: Record<string, object> = {
+  'ishur-kritat-etz': {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'איך מקבלים אישור כריתת עץ בישראל',
+    description: 'תהליך שלב-אחר-שלב לקבלת אישור כריתת עץ מפקיד יערות',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'הגשת בקשה', text: 'מגישים טופס בקשה לפקיד היערות ברשות המקומית עם תמונות ומידות העץ' },
+      { '@type': 'HowToStep', position: 2, name: 'ביקור פקיד', text: 'פקיד היערות מבצע ביקור בשטח ובודק את הצורך בכריתה' },
+      { '@type': 'HowToStep', position: 3, name: 'קבלת האישור', text: 'מקבלים אישור בכתב — רק אז מותר לכרות' },
+      { '@type': 'HowToStep', position: 4, name: 'ביצוע הכריתה', text: 'כורתים את העץ עם גוזם מוסמך מטעם משרד החקלאות' }
+    ],
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'ILS', value: '0', description: 'הגשת הבקשה חינם; עץ חלופי עשוי לעלות 500–5,000 ₪' },
+    totalTime: 'P4W'
+  },
+  'matai-lagzom-etz': {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'איך לבחור את עונת הגיזום הנכונה',
+    description: 'מדריך שלבים לבחירת העיתוי הנכון לגיזום עץ',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'זהה את סוג העץ', text: 'עץ נשיר, עץ פרי, דקל — לכל סוג עיתוי שונה' },
+      { '@type': 'HowToStep', position: 2, name: 'בדוק בטיחות', text: 'אם יש ענף שבור או מסוכן — גוזמים מיד ללא קשר לעונה' },
+      { '@type': 'HowToStep', position: 3, name: 'עצים רגילים', text: 'סוף חורף–תחילת אביב (ינואר–מרץ) היא העונה האידיאלית לרוב העצים' },
+      { '@type': 'HowToStep', position: 4, name: 'עצי פרי', text: 'גזום לפי הסוג: זית בפברואר–מרץ, הדרים במרץ–אפריל, מנגו ואבוקדו אחרי הקטיף' }
+    ]
+  }
+};
+
+const howToSchema = howToSchemas[post.slug];
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -29,12 +62,24 @@ const articleSchema = {
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
   author: { '@type': 'Organization', name: post.data.author },
   publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/blog/${post.slug}` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
   image: heroImage ? `${SITE.url}${heroImage}` : undefined
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'בית', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'בלוג', item: `${SITE.url}/blog` },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: canonicalUrl }
+  ]
 };
 ---
 <BaseLayout title={post.data.title} description={post.data.description} ogImage={heroImage}>
   <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  {howToSchema && <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
 
   <article class="bg-white">
     <header class="bg-gradient-to-bl from-forest-900 via-forest-800 to-forest-700 text-white">
