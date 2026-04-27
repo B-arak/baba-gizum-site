@@ -130,26 +130,53 @@ const description = 'בב"א גיזום — שירות מקצועי של גיז�
     </div>
   </section>
 
-  {/* GALLERY PLACEHOLDER */}
+  {/* GALLERY */}
   <section class="section bg-white">
     <div class="container-x">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="eyebrow">לפני ואחרי</span>
+        <span class="eyebrow">מהשטח</span>
         <h2 class="h2 mb-4">תיק עבודות</h2>
-        <p class="lead">מבחר עבודות מהשטח. לפרטים על כל עבודה — צרו קשר.</p>
+        <p class="lead">מבחר עבודות אמיתיות מהשטח. לפרטים — שלחו תמונה בוואטסאפ.</p>
       </div>
 
       <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-        {[1,2,3,4,5,6].map(n => (
-          <div class="aspect-square bg-gradient-to-br from-forest-200 to-forest-400 rounded-xl flex items-center justify-center text-white font-semibold shadow-soft" aria-label={`עבודה ${n}`}>
-            <div class="text-center">
-              <svg class="w-12 h-12 mx-auto mb-2 opacity-70" fill="currentColor" viewBox="0 0 20 20"><path d="M10 1.5c-1 3-4 4-4 7 0 2 1.5 3.5 4 3.5s4-1.5 4-3.5c0-3-3-4-4-7z"/></svg>
-              <span>תמונה {n}</span>
-            </div>
-          </div>
-        ))}
+        <div class="aspect-square overflow-hidden rounded-xl shadow-soft">
+          <img src="/images/gizum-etz-oren.jpeg"
+               alt="גוזם מוסמך עולה על עץ אורן גבוה עם ציוד גיזום מקצועי"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+               loading="lazy" width="600" height="600" />
+        </div>
+        <div class="aspect-square overflow-hidden rounded-xl shadow-soft">
+          <img src="/images/hero-gozem-etz.jpeg"
+               alt="גוזם מקצועי על ראש עץ מחייך עם מסור שרשרת"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+               loading="lazy" width="600" height="600" />
+        </div>
+        <div class="aspect-square overflow-hidden rounded-xl shadow-soft">
+          <img src="/images/kritat-etz-manof.jpeg"
+               alt="כריתת עץ בסיוע מנוף ועגורן בסביבה עירונית"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+               loading="lazy" width="600" height="600" />
+        </div>
+        <div class="aspect-square overflow-hidden rounded-xl shadow-soft">
+          <img src="/images/gizum-dekel-even.jpeg"
+               alt="גיזום דקל תמר ליד קיר אבן עם נוף הרים ברקע"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+               loading="lazy" width="600" height="600" />
+        </div>
+        <div class="aspect-square overflow-hidden rounded-xl shadow-soft">
+          <img src="/images/kritat-oren.jpeg"
+               alt="כריתת עץ אורן גבוה על רקע שמיים כחולים"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+               loading="lazy" width="600" height="600" />
+        </div>
+        <div class="aspect-square overflow-hidden rounded-xl shadow-soft">
+          <img src="/images/pinui-gezem-traktor.jpeg"
+               alt="פינוי גזם עצים עם טרקטור קדמי בשטח פתוח"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+               loading="lazy" width="600" height="600" />
+        </div>
       </div>
-      <p class="text-center text-sm text-forest-600 mt-4">* יש להחליף את התמונות עם תמונות אמיתיות מהעבודות שלכם (תיקייה /public/images/gallery/)</p>
     </div>
   </section>
 
