@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo *)",
+      "Bash(npx vercel *)",
+      "Bash(mkdir -p public/images)",
+      "Bash(cp \"pic/1_Website_Ready/WhatsApp Image 2026-04-26 at 7.22.44 PM \\(2\\).jpeg\" \"public/images/hero-gozem-etz.jpeg\")",
+      "Bash(cp \"pic/1_Website_Ready/WhatsApp Image 2026-04-26 at 7.22.43 PM \\(2\\).jpeg\" \"public/images/gizum-etz-oren.jpeg\")",
+      "Bash(cp \"pic/1_Website_Ready/WhatsApp Image 2026-04-26 at 7.22.49 PM \\(2\\).jpeg\" \"public/images/kritat-oren.jpeg\")",
+      "Bash(cp \"pic/1_Website_Ready/WhatsApp Image 2026-04-26 at 7.22.42 PM \\(3\\).jpeg\" \"public/images/kritat-etz-manof.jpeg\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate",
+      "Bash(python -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
+      "Bash(python3 -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
+      "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp OK'\\)\")",
+      "Bash(node -e \"console.log\\('node OK'\\)\")",
+      "Bash(npm list *)",
+      "Bash(npx --yes sharp-cli --version)",
+      "Bash(node -e \"require\\('jimp'\\)\")",
+      "Bash(npm install *)",
+      "Bash(node -e ' *)",
+      "Bash(node -e \"const jimp = require\\('jimp'\\); console.log\\('jimp version:', jimp.version || 'ok'\\)\")",
+      "Bash(node -e \"const { Jimp } = require\\('jimp'\\); console.log\\('jimp v2 OK'\\)\")",
+      "Bash(python3 -c \"from PIL import Image, ImageDraw; print\\('PIL OK'\\)\")",
+      "Bash(pip install *)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL OK'\\)\")",
+      "Bash(sed -i 's/שירות מהיר בכל הארץ/שירות מהיר/g' src/pages/contact.astro)",
+      "Bash(sed -i 's/בכל הארץ\\\\././g; s/בכל הארץ,/,/g; s/ בכל הארץ//g' src/pages/pricing.astro)"
+    ]
+  }
+}
