@@ -15,10 +15,10 @@
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^5.1.1",
-    "jimp": "^0.22.12",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "jimp": "^0.22.12"
   }
 }

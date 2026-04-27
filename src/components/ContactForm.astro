@@ -21,6 +21,8 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/yourFormID';
     <textarea id="message" name="message" rows="4" class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200"></textarea>
   </div>
   <input type="hidden" name="_subject" value="פנייה חדשה מאתר בב״א גיזום" />
+  {/* Honeypot — בוטים ימלאו שדה זה, בני-אדם לא יראו אותו */}
+  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
   <button type="submit" class="btn-primary w-full text-base">שלח/י וקבל/י הצעת מחיר</button>
   <p class="text-sm text-forest-600 text-center">או — שלחו תמונה ישירות בוואטסאפ ל־ <a href={`https://wa.me/${SITE.whatsapp}`} class="font-semibold underline">{SITE.phone}</a></p>
 </form>
