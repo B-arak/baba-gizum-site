@@ -17,6 +17,9 @@ const { Content } = await post.render();
 
 const formatDate = (d: Date) => new Intl.DateTimeFormat('he-IL', { dateStyle: 'long' }).format(d);
 
+const heroImage = post.data.heroImage ?? SITE.socialImage;
+const heroAlt  = post.data.heroAlt  ?? post.data.title;
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -26,10 +29,11 @@ const articleSchema = {
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
   author: { '@type': 'Organization', name: post.data.author },
   publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/blog/${post.slug}` }
+  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}/blog/${post.slug}` },
+  image: heroImage ? `${SITE.url}${heroImage}` : undefined
 };
 ---
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} ogImage={heroImage}>
   <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
   <article class="bg-white">
@@ -48,6 +52,19 @@ const articleSchema = {
         </div>
       </div>
     </header>
+
+    {heroImage && (
+      <div class="w-full max-h-[460px] overflow-hidden bg-forest-900">
+        <img
+          src={heroImage}
+          alt={heroAlt}
+          class="w-full max-h-[460px] object-cover object-center"
+          width="1200" height="460"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    )}
 
     <section class="section">
       <div class="container-x grid lg:grid-cols-3 gap-10">
