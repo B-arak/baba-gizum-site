@@ -10,7 +10,8 @@ export const SITE = {
   email: 'binyaminbenari@gmail.com',
   address: 'ישראל',
   hours: 'א׳-ה׳ 07:00-19:00, ו׳ 07:00-13:00',
-  socialImage: '/images/og-image.jpg'
+  socialImage: '/images/og-image.jpg',
+  googleReview: 'https://g.page/r/CdV-Ui6WJnEREAI/review'
 };
 
 export const SERVICES = [
