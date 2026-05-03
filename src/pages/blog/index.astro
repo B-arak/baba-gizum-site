@@ -21,7 +21,7 @@ const formatDate = (d: Date) => new Intl.DateTimeFormat('he-IL', { dateStyle: 'l
 
   <section class="section bg-white">
     <div class="container-x">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {posts.map(post => (
           <a href={`/blog/${post.slug}`} class="card block hover:bg-forest-50 group !p-0 overflow-hidden">
             <div class="aspect-video overflow-hidden rounded-t-2xl bg-forest-800">
@@ -38,7 +38,7 @@ const formatDate = (d: Date) => new Intl.DateTimeFormat('he-IL', { dateStyle: 'l
                   </div>
               }
             </div>
-            <div class="p-6">
+            <div class="p-4 sm:p-6">
             <div class="flex items-center gap-2 text-xs text-forest-600 mb-2">
               <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
               {post.data.tags.length > 0 && <span>•</span>}
