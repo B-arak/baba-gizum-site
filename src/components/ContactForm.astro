@@ -1,6 +1,7 @@
 ---
 import { SITE } from '../data/site';
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrejeyye';
+const inputClass = "w-full rounded-lg border border-forest-200 bg-white text-gray-900 placeholder-gray-400 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200 transition";
 ---
 <form
   action={FORMSPREE_ENDPOINT}
@@ -10,49 +11,70 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrejeyye';
 >
   <!-- שם מלא -->
   <div>
-    <label for="name" class="block text-sm font-semibold text-forest-800 mb-1">שם מלא <span class="text-red-500">*</span></label>
-    <input type="text" id="name" name="name" required autocomplete="name"
+    <label for="name" class="block text-sm font-semibold text-forest-800 mb-1">
+      שם מלא <span class="text-red-500">*</span>
+    </label>
+    <input
+      type="text" id="name" name="name" required autocomplete="name"
       placeholder="ישראל ישראלי"
-      class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200 transition" />
+      class={inputClass}
+    />
   </div>
 
   <!-- טלפון -->
   <div>
-    <label for="phone" class="block text-sm font-semibold text-forest-800 mb-1">טלפון <span class="text-red-500">*</span></label>
-    <input type="tel" id="phone" name="phone" required autocomplete="tel"
+    <label for="phone" class="block text-sm font-semibold text-forest-800 mb-1">
+      טלפון <span class="text-red-500">*</span>
+    </label>
+    <input
+      type="tel" id="phone" name="phone" required autocomplete="tel"
       placeholder="050-0000000"
       pattern="[0-9\-\+\s]{9,15}"
-      class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200 transition" />
+      class={inputClass}
+    />
   </div>
 
   <!-- עיר -->
   <div>
-    <label for="city" class="block text-sm font-semibold text-forest-800 mb-1">עיר / יישוב <span class="text-red-500">*</span></label>
-    <input type="text" id="city" name="city" required
+    <label for="city" class="block text-sm font-semibold text-forest-800 mb-1">
+      עיר / יישוב <span class="text-red-500">*</span>
+    </label>
+    <input
+      type="text" id="city" name="city" required
       placeholder="תל אביב"
-      class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200 transition" />
+      class={inputClass}
+    />
   </div>
 
   <!-- סוג שירות -->
   <div>
-    <label for="service" class="block text-sm font-semibold text-forest-800 mb-1">סוג שירות <span class="text-red-500">*</span></label>
-    <select id="service" name="service" required
-      class="w-full rounded-lg border border-forest-200 px-4 py-3 bg-white focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200 transition">
-      <option value="" disabled selected>בחרו שירות...</option>
-      <option value="גיזום עצים">גיזום עצים</option>
-      <option value="כריתת עצים">כריתת עצים</option>
-      <option value="גיזום דקלים">גיזום דקלים</option>
-      <option value="כרסום גזעים ושורשים">כרסום גזעים ושורשים</option>
+    <label for="service" class="block text-sm font-semibold text-forest-800 mb-1">
+      סוג שירות <span class="text-red-500">*</span>
+    </label>
+    <select
+      id="service" name="service" required
+      class={inputClass}
+    >
+      <option value="" disabled selected class="text-gray-400">בחרו שירות...</option>
+      <option value="גיזום עצים">🌳 גיזום עצים</option>
+      <option value="כריתת עצים">🪚 כריתת עצים</option>
+      <option value="גיזום דקלים">🌴 גיזום דקלים</option>
+      <option value="כרסום גזעים ושורשים">🪵 כרסום גזעים ושורשים</option>
       <option value="אחר">אחר</option>
     </select>
   </div>
 
   <!-- תיאור -->
   <div>
-    <label for="message" class="block text-sm font-semibold text-forest-800 mb-1">תיאור קצר</label>
-    <textarea id="message" name="message" rows="3"
-      placeholder="סוג עץ, גובה משוער, כמות עצים, מיקום מדויק..."
-      class="w-full rounded-lg border border-forest-200 px-4 py-3 focus:border-forest-600 focus:outline-none focus:ring-2 focus:ring-forest-200 transition resize-none"></textarea>
+    <label for="message" class="block text-sm font-semibold text-forest-800 mb-1">
+      תיאור קצר
+      <span class="text-forest-500 font-normal text-xs">(לא חובה)</span>
+    </label>
+    <textarea
+      id="message" name="message" rows="3"
+      placeholder="סוג עץ, גובה משוער, כמות עצים, מיקום..."
+      class={inputClass + " resize-none"}
+    ></textarea>
   </div>
 
   <!-- hidden fields -->
@@ -62,16 +84,21 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrejeyye';
 
   <!-- כפתור שליחה -->
   <button type="submit" id="submit-btn"
-    class="btn-primary w-full text-base flex items-center justify-center gap-2">
+    class="btn-primary w-full text-base flex items-center justify-center gap-2 py-3.5">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
     </svg>
     שלח/י וקבל/י הצעת מחיר
   </button>
 
+  <!-- הודעת שגיאה -->
+  <div id="form-error" class="hidden bg-red-50 border border-red-200 rounded-lg p-3 text-center">
+    <p class="text-red-700 text-sm font-semibold">שגיאה בשליחה — אנא נסו שוב או צרו קשר בוואטסאפ</p>
+  </div>
+
   <!-- הודעת הצלחה -->
-  <div id="form-success" class="hidden bg-green-50 border border-green-200 rounded-lg p-4 text-center space-y-3">
-    <p class="text-green-800 font-semibold text-lg">✅ הפנייה נשלחה בהצלחה!</p>
+  <div id="form-success" class="hidden bg-green-50 border border-green-200 rounded-lg p-5 text-center space-y-3">
+    <p class="text-green-800 font-bold text-lg">✅ הפנייה נשלחה בהצלחה!</p>
     <p class="text-green-700 text-sm">נחזור אליך תוך שעות ספורות עם הצעת מחיר.</p>
     <div class="border-t border-green-200 pt-3">
       <p class="text-sm text-green-700 mb-2">בינתיים — תעזרו לנו לגדול ⭐</p>
@@ -83,39 +110,61 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xrejeyye';
     </div>
   </div>
 
-  <p class="text-sm text-forest-600 text-center">
+  <p class="text-sm text-forest-600 text-center pt-1">
     או — שלחו תמונה ישירות בוואטסאפ ל־
     <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('שלום בנימין, הגעתי מהאתר 🌳\nאשמח לקבל הצעת מחיר עבור גיזום / כריתה / כרסום שורשים של עץ מסוג: _______\nמצורפת תמונה של העץ.')}`}
-      class="font-semibold underline">{SITE.phone}</a>
+      target="_blank" rel="noopener"
+      class="font-semibold underline text-forest-700 hover:text-forest-900">{SITE.phone}</a>
   </p>
 </form>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const successMsg = document.getElementById('form-success');
-  const submitBtn = document.getElementById('submit-btn');
+  const errorMsg = document.getElementById('form-error');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!submitBtn) return;
 
-    submitBtn.textContent = 'שולח...';
-    (submitBtn as HTMLButtonElement).disabled = true;
+    // מצב טעינה
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12a8 8 0 018-8v8H4z"/>
+      </svg>
+      שולח...
+    `;
 
-    const data = new FormData(form);
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' }
-    });
+    errorMsg?.classList.add('hidden');
 
-    if (res.ok) {
-      form.reset();
-      successMsg?.classList.remove('hidden');
-      submitBtn.classList.add('hidden');
-    } else {
-      submitBtn.textContent = 'שגיאה — נסו שוב';
-      (submitBtn as HTMLButtonElement).disabled = false;
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        successMsg?.classList.remove('hidden');
+        submitBtn.classList.add('hidden');
+        // גלול להודעת הצלחה
+        successMsg?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error('שגיאת שרת');
+      }
+    } catch {
+      errorMsg?.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+        שלח/י וקבל/י הצעת מחיר
+      `;
     }
   });
 </script>
