@@ -17,7 +17,7 @@ interface Props {
 const {
   title = SITE.name + ' — ' + SITE.tagline,
   description = SITE.description,
-  canonical = Astro.url.href,
+  canonical = `${SITE.url}${Astro.url.pathname}`,
   noindex = false,
   ogImage = SITE.socialImage
 } = Astro.props;

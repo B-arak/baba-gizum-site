@@ -19,7 +19,7 @@ const formatDate = (d: Date) => new Intl.DateTimeFormat('he-IL', { dateStyle: 'l
 
 const heroImage = post.data.heroImage ?? SITE.socialImage;
 const heroAlt  = post.data.heroAlt  ?? post.data.title;
-const canonicalUrl = `${SITE.url}/blog/${post.slug}`;
+const canonicalUrl = `${SITE.url}/blog/${post.slug}/`;
 
 // HowTo schema for step-by-step posts
 const howToSchemas: Record<string, object> = {
@@ -76,7 +76,7 @@ const breadcrumbSchema = {
   ]
 };
 ---
-<BaseLayout title={post.data.title} description={post.data.description} ogImage={heroImage}>
+<BaseLayout title={post.data.title} description={post.data.description} canonical={canonicalUrl} ogImage={heroImage}>
   <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   {howToSchema && <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}

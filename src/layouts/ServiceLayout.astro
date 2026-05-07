@@ -16,7 +16,7 @@ interface Props {
 const { title, description, h1, intro, faqs = [] } = Astro.props;
 const serviceUrl = `${SITE.url}${Astro.url.pathname}`;
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} canonical={serviceUrl}>
   {faqs.length > 0 && <FAQSchema slot="head-extra" faqs={faqs} />}
   <ServiceSchema slot="head-extra" name={h1} description={description} url={serviceUrl} />
 
