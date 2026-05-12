@@ -1,59 +1,142 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
+
+const founderSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'בנימין בן ארי',
+  jobTitle: 'גוזם וכורת מוסמך',
+  worksFor: {
+    '@type': 'LocalBusiness',
+    name: SITE.name,
+    url: SITE.url
+  },
+  knowsAbout: [
+    'גיזום עצים',
+    'כריתת עצים',
+    'גיזום דקלים',
+    'עבודה בגובה',
+    'טיפוס על עצים',
+    'כרסום גדמות'
+  ],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'תעודת גוזם וכורת מוסמך',
+      credentialCategory: 'license',
+      recognizedBy: { '@type': 'Organization', name: 'משרד החקלאות ופיתוח הכפר, ישראל' }
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'תעודת עבודה בגובה',
+      credentialCategory: 'license',
+      recognizedBy: { '@type': 'Organization', name: 'משרד העבודה, ישראל' }
+    }
+  ]
+};
 ---
 <BaseLayout
-  title="אודות בב״א גיזום | גוזם וכורת מוסמך משרד החקלאות"
-  description="הסיפור שלנו, המומחיות, התעודות והערכים. בב״א גיזום — שירותי גיזום וכריתת עצים מקצועיים ברוב אזורי הארץ."
+  title="אודות בנימין בן ארי | גוזם וכורת מוסמך — בב״א גיזום"
+  description="בנימין בן ארי, גוזם וכורת מוסמך מטעם משרד החקלאות עם 6 שנות ניסיון. מייסד בב״א גיזום — שירות גיזום וכריתת עצים מקצועי ברוב אזורי הארץ."
 >
+  <script slot="head-extra" type="application/ld+json" set:html={JSON.stringify(founderSchema)} />
+
   <section class="bg-gradient-to-bl from-forest-900 via-forest-800 to-forest-700 text-white">
     <div class="container-x section">
       <h1 class="h1 text-white mb-5">אודות {SITE.name}</h1>
-      <p class="lead !text-sand-100 max-w-2xl">המקצועיות שלנו זה לא ססמה. זה אישורים, ניסיון, וערכים שאנחנו עומדים מאחוריהם בכל עבודה.</p>
+      <p class="lead !text-sand-100 max-w-2xl">פנים מאחורי החברה, האישורים, הניסיון — והסיבה שאנחנו עושים את זה אחרת.</p>
     </div>
   </section>
 
+  {/* FOUNDER */}
   <section class="section bg-white">
-    <div class="container-x grid lg:grid-cols-3 gap-10">
+    <div class="container-x grid lg:grid-cols-3 gap-10 items-start">
       <div class="lg:col-span-2 space-y-6 text-forest-800 leading-relaxed">
+
+        <div class="flex items-center gap-5 mb-2">
+          <img
+            src="/images/gozem-portret.jpeg"
+            alt="בנימין בן ארי — גוזם וכורת מוסמך, מייסד בב״א גיזום, בעבודה על עץ"
+            class="w-24 h-24 rounded-full object-cover shadow-soft ring-4 ring-forest-100"
+            width="96" height="96" loading="eager"
+          />
+          <div>
+            <h2 class="text-2xl font-bold text-forest-900">בנימין בן ארי</h2>
+            <p class="text-forest-600 font-medium">גוזם וכורת מוסמך · מייסד בב״א גיזום</p>
+            <p class="text-sm text-forest-500">פעיל בתחום מ-2019 · החברה הוקמה ב-2020</p>
+          </div>
+        </div>
+
         <h2 class="h2 text-forest-900">מי אנחנו</h2>
-        <p>בב"א גיזום היא חברת גיזום וכריתת עצים שפועלת ברוב אזורי הארץ. ההתמחות שלנו היא בעבודה בגובה ובטיפוס מקצועי על עצים — ללא שימוש במנוף — מה שמאפשר לנו להגיע למקומות שאחרים לא יכולים, ובעלות נמוכה משמעותית מהמתחרים.</p>
-        <p>מאחורי החברה עומד גוזם וכורת מוסמך מטעם משרד החקלאות, עם תעודה לעבודה בגובה לפי תקנות משרד העבודה ושנים של ניסיון בעבודה במגוון רחב של עצים ובאתרים מורכבים — מבתים פרטיים בשכונות צפופות ועד גינות מסחריות גדולות.</p>
+        <p>
+          בב"א גיזום הוקמה ב-2020 על ידי בנימין בן ארי — גוזם וכורת שהחל את דרכו בתחום ב-2019 ומאז צבר ניסיון של למעלה מ-6 שנים בגיזום וכריתת עצים ברחבי ישראל. החברה פועלת ברוב אזורי הארץ ומתמחה בעבודה בגובה ובטיפוס מקצועי — ללא שימוש במנוף.
+        </p>
+        <p>
+          מה שהתחיל כעבודה עצמאית בשכונות הפרטיות של המרכז הפך לחברה שמטפלת במאות עצים בשנה — מבתים פרטיים וגינות ועד חצרות בניינים משותפים, קמפוסים ומגרשים מסחריים.
+        </p>
 
         <h2 class="h2 text-forest-900">המומחיות שלנו</h2>
-        <p>הדגש הייחודי שלנו הוא <strong>גיזום וכריתה ללא מנוף</strong>. בעוד שרוב חברות הגיזום בישראל יציעו לכם להוציא מנוף לכל עבודה גבוהה (ובעלות גבוהה), אנחנו עובדים בטיפוס. למה זה חשוב לכם:</p>
+        <p>
+          הדגש הייחודי של בב"א הוא <strong>גיזום וכריתה ללא מנוף</strong>. בנימין עובד בטיפוס — עם ציוד עבודה בגובה מקצועי — מה שמאפשר לו להגיע לכל עץ, בכל גובה, גם בחצרות שאי-אפשר להכניס אליהן רכב כבד.
+        </p>
         <ul class="list-disc pr-5 space-y-2">
-          <li><strong>חיסכון של 500-1,200 ₪ בכל עבודה</strong> שלא דורשת באמת מנוף.</li>
-          <li><strong>גישה לחצרות סגורות</strong> שאי אפשר להכניס אליהן רכב כבד.</li>
-          <li><strong>גיזום מדויק יותר</strong> — מטפס יכול להגיע לענפים פנימיים שמנוף לא רואה.</li>
-          <li><strong>פחות נזק סביבתי</strong> — אין שקיעות במדרכה, אין הרס מצמחיה סובבת.</li>
-          <li><strong>זמן קצר יותר</strong> כשהשטח לא ידידותי למנוף.</li>
+          <li><strong>חיסכון של 500–1,200 ₪ בכל עבודה</strong> שלא דורשת באמת מנוף</li>
+          <li><strong>גישה לחצרות סגורות</strong> וסמטאות שמנוף לא יכול להגיע אליהן</li>
+          <li><strong>גיזום מדויק יותר</strong> — מטפס רואה ענפים פנימיים שמנוף מפספס</li>
+          <li><strong>פחות נזק לשטח</strong> — אין שקיעות במדרכה, אין הרס לצמחייה שסביב</li>
         </ul>
 
-        <h2 class="h2 text-forest-900">האישורים שלנו</h2>
+        <h2 class="h2 text-forest-900">האישורים של בנימין</h2>
         <ul class="list-disc pr-5 space-y-2">
-          <li><strong>תעודת גוזם וכורת מוסמך</strong> מטעם משרד החקלאות — האישור החוקי לבצע עבודות גיזום וכריתה בישראל.</li>
-          <li><strong>תעודת עבודה בגובה</strong> לפי תקנות משרד העבודה — חובה חוקית לכל מי שעובד מעל 2 מטר.</li>
+          <li>
+            <strong>תעודת גוזם וכורת מוסמך</strong> מטעם משרד החקלאות ופיתוח הכפר —
+            האישור החוקי הנדרש בישראל לביצוע עבודות גיזום וכריתה
+          </li>
+          <li>
+            <strong>תעודת עבודה בגובה</strong> לפי תקנות משרד העבודה —
+            חובה חוקית לכל מי שעובד מעל 2 מטר מהקרקע
+          </li>
         </ul>
 
         <h2 class="h2 text-forest-900">הערכים שלנו</h2>
+
         <h3 class="h3 text-forest-900 mt-6">מקצועיות אמיתית</h3>
-        <p>אנחנו מתייחסים לכל עץ כמו לפרויקט נפרד. לא חותכים מהר, לא חותכים עיוור. מבינים את ביולוגיית העץ, את הצרכים שלו, ועושים גיזום שיועיל לו — לא רק יחסל אותו.</p>
+        <p>בנימין מתייחס לכל עץ כמו לפרויקט נפרד. לא חותכים מהר, לא חותכים עיוור. מבינים את ביולוגיית העץ, את הצרכים שלו, ועושים גיזום שיועיל לו — לא רק יחסל אותו.</p>
 
         <h3 class="h3 text-forest-900 mt-6">שקיפות במחיר</h3>
-        <p>שולחים לנו תמונה — שולחים לכם הצעת מחיר. אם נדרש ביקור הערכה, נגיע ללא עלות. המחיר שאנחנו מציעים הוא המחיר שתשלמו, אלא אם בשטח מתגלה משהו שבאמת לא יכולנו לדעת מהתמונה (ואז נסביר לפני שמתחילים).</p>
+        <p>שולחים תמונה — שולחים הצעת מחיר. אם נדרש ביקור הערכה, בנימין מגיע ללא עלות. המחיר שמוצע הוא המחיר שתשלמו — אלא אם בשטח מתגלה משהו שלא יכול היה להיראות בתמונה, ואז מסבירים לפני שמתחילים.</p>
 
         <h3 class="h3 text-forest-900 mt-6">בטיחות בלי פשרות</h3>
-        <p>גיזום וכריתה הן עבודות מסוכנות. אנחנו לא מקצרים בבטיחות — לא לעצמנו, ולא לסביבה שלכם. כל עבודה מתחילה בהערכת סיכונים והגדרת אמצעי בטיחות, וצוות העבודה תמיד מחזיק בכל הציוד הנדרש.</p>
+        <p>גיזום וכריתה הן עבודות מסוכנות. כל עבודה מתחילה בהערכת סיכונים, הגדרת אמצעי בטיחות, וציוד מלא לעבודה בגובה — לא רק לעצמנו, אלא גם כדי להגן על הסביבה שלכם.</p>
 
         <h3 class="h3 text-forest-900 mt-6">אחריות עד הסוף</h3>
-        <p>העבודה לא נגמרת בחיתוך הענפים האחרון. אנחנו מפנים את כל הגזם, מטאטאים את האזור, ועוזבים את השטח נקי לחלוטין. אם יש משהו שלא תקין — אנחנו חוזרים בלי שאלות.</p>
+        <p>העבודה לא נגמרת בחיתוך הענף האחרון. הגזם מפונה, האזור מטואטא, והשטח עוזב נקי לחלוטין. אם יש משהו שלא תקין — חוזרים בלי שאלות.</p>
       </div>
 
-      <aside class="space-y-6">
-        <div class="bg-forest-700 text-white rounded-2xl p-6 sticky top-24">
+      <aside class="space-y-6 lg:sticky lg:top-24">
+        <div class="overflow-hidden rounded-2xl shadow-soft">
+          <img
+            src="/images/gozem-portret.jpeg"
+            alt="בנימין בן ארי בעבודת גיזום — טיפוס על עץ עם ציוד מקצועי"
+            class="w-full aspect-square object-cover"
+            width="400" height="400" loading="lazy"
+          />
+        </div>
+
+        <div class="bg-forest-50 rounded-2xl p-5 space-y-3 text-sm text-forest-800">
+          <h3 class="font-bold text-forest-900 text-base">בקצרה</h3>
+          <div class="flex gap-2"><span class="text-forest-500">👤</span> <span><strong>בנימין בן ארי</strong></span></div>
+          <div class="flex gap-2"><span class="text-forest-500">📅</span> <span>בתחום מ-2019 · חברה מ-2020</span></div>
+          <div class="flex gap-2"><span class="text-forest-500">🌳</span> <span>גיזום, כריתה, דקלים, כרסום</span></div>
+          <div class="flex gap-2"><span class="text-forest-500">📍</span> <span>ברוב אזורי הארץ</span></div>
+          <div class="flex gap-2"><span class="text-forest-500">✅</span> <span>מוסמך משרד החקלאות</span></div>
+          <div class="flex gap-2"><span class="text-forest-500">✅</span> <span>תעודת עבודה בגובה</span></div>
+        </div>
+
+        <div class="bg-forest-700 text-white rounded-2xl p-6">
           <h3 class="font-bold mb-3">בואו נדבר</h3>
-          <p class="mb-5 text-sand-100">שלחו לנו תמונה של העץ — אנחנו מחזירים תשובה תוך דקות.</p>
+          <p class="mb-5 text-sand-100 text-sm">שלחו לנו תמונה של העץ — בנימין מחזיר תשובה תוך דקות.</p>
           <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener" class="btn-accent w-full mb-2">וואטסאפ</a>
           <a href={`tel:${SITE.phoneRaw}`} class="btn-whatsapp w-full">{SITE.phone}</a>
         </div>
