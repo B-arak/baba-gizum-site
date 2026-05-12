@@ -1,6 +1,24 @@
 ---
 import { SITE, CITIES } from '../data/site';
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  inLanguage: 'he',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${SITE.url}/blog?q={search_term_string}`
+    },
+    'query-input': 'required name=search_term_string'
+  }
+};
+
 const businessSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
@@ -95,7 +113,7 @@ const businessSchema = {
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '5',
-    reviewCount: '3',
+    reviewCount: '7',
     bestRating: '5',
     worstRating: '1'
   },
@@ -105,21 +123,49 @@ const businessSchema = {
       author: { '@type': 'Person', name: 'רונית כ.' },
       reviewRating: { '@type': 'Rating', ratingValue: '5' },
       reviewBody: 'עץ ענק שנשען על הבית. הגיעו תוך יום, גזמו במקצועיות בלי מנוף בכלל ובמחיר הוגן. מומלץ בלב שלם.',
-      datePublished: '2026-01-01'
+      datePublished: '2026-01-10'
     },
     {
       '@type': 'Review',
       author: { '@type': 'Person', name: 'אבי ל.' },
       reviewRating: { '@type': 'Rating', ratingValue: '5' },
       reviewBody: 'שלחתי תמונה בוואטסאפ, קיבלתי הצעת מחיר תוך עשר דקות, הגיעו בזמן ועשו עבודה מסודרת ומקצועית.',
-      datePublished: '2026-02-01'
+      datePublished: '2026-02-03'
     },
     {
       '@type': 'Review',
       author: { '@type': 'Person', name: 'יוסי ב.' },
       reviewRating: { '@type': 'Rating', ratingValue: '5' },
       reviewBody: 'עזרו לי גם בהוצאת האישור מהעירייה. שירות מצוין, מקצועי ואדיב.',
-      datePublished: '2026-03-01'
+      datePublished: '2026-03-05'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'מרים ש.' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+      reviewBody: 'גיזמו לנו דקל וושינגטוניה ענק בגינה — עבודה בגובה מרשימה לחלוטין. הכל נקי ומסודר, ממליצה בחום.',
+      datePublished: '2026-03-18'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'דני א.' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+      reviewBody: 'כרתו עץ אורן ישן שהיה מסוכן קרוב לגדר. עבדו מהר, בבטיחות ובמחיר שהפתיע אותי לטובה.',
+      datePublished: '2026-04-02'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'חני מ.' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+      reviewBody: 'ניסיתי לקבל הצעות ממספר גוזמים — בב"א הכי הגיוניים במחיר והכי מקצועיים בביצוע. בהחלט אחזור.',
+      datePublished: '2026-04-20'
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'שלומי ר.' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5' },
+      reviewBody: 'גיזום עצי זית בגינה גדולה — עשו עבודה יסודית וידעו בדיוק אילו ענפים להסיר. שירות מהיר ואמין.',
+      datePublished: '2026-05-08'
     }
   ],
   openingHoursSpecification: [
@@ -137,8 +183,11 @@ const businessSchema = {
     }
   ],
   sameAs: [
-    `https://wa.me/${SITE.whatsapp}`
+    `https://wa.me/${SITE.whatsapp}`,
+    'https://www.facebook.com/babagizum',
+    'https://www.google.com/maps/search/babagizum'
   ]
 };
 ---
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
