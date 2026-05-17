@@ -157,5 +157,13 @@ export const CITIES = [
   { slug: 'rishon-lezion', name: 'ראשון לציון', region: 'מרכז' },
   { slug: 'holon', name: 'חולון', region: 'מרכז' },
   { slug: 'jerusalem', name: 'ירושלים', region: 'ירושלים' },
-  { slug: 'haifa', name: 'חיפה', region: 'צפון' }
+  { slug: 'haifa', name: 'חיפה', region: 'צפון' },
+  { slug: 'hadera', name: 'חדרה', region: 'שרון' },
+  { slug: 'gedera', name: 'גדרה', region: 'מרכז' },
+  { slug: 'rehovot', name: 'רחובות', region: 'מרכז' },
+  { slug: 'nes-ziona', name: 'נס ציונה', region: 'מרכז' },
+  { slug: 'hod-hasharon', name: 'הוד השרון', region: 'שרון' },
+  { slug: 'ramat-hasharon', name: 'רמת השרון', region: 'שרון' },
+  { slug: 'rosh-haayin', name: 'ראש העין', region: 'מרכז' },
+  { slug: 'shoham', name: 'שהם', region: 'מרכז' }
 ];
