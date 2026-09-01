@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import Schema from '../components/Schema.astro';
-import { SITE } from '../data/site';
+import { SITE, ANALYTICS } from '../data/site';
 
 interface Props {
   title?: string;
@@ -63,6 +63,18 @@ const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name)
 
   <Schema />
   <slot name="head-extra" />
+
+  {ANALYTICS.googleTagId && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.googleTagId}`}></script>
+      <script is:inline define:vars={{ tagId: ANALYTICS.googleTagId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', tagId);
+      </script>
+    </>
+  )}
 </head>
 <body>
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:right-2 focus:bg-forest-700 focus:text-white focus:px-4 focus:py-2 focus:rounded">דלג לתוכן הראשי</a>
@@ -72,5 +84,23 @@ const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name)
   </main>
   <Footer />
   <WhatsAppFloat />
+
+  {ANALYTICS.googleTagId && (
+    <script is:inline define:vars={{ tagId: ANALYTICS.googleTagId, convLabel: ANALYTICS.googleAdsConversionLabel }}>
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest ? e.target.closest('a[href]') : null;
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        var method = null;
+        if (href.indexOf('wa.me') !== -1) method = 'whatsapp';
+        else if (href.indexOf('tel:') === 0) method = 'phone';
+        if (!method || typeof gtag !== 'function') return;
+        gtag('event', 'generate_lead', { method: method });
+        if (convLabel) {
+          gtag('event', 'conversion', { send_to: tagId + '/' + convLabel });
+        }
+      }, true);
+    </script>
+  )}
 </body>
 </html>

@@ -14,6 +14,16 @@ export const SITE = {
   googleReview: 'https://g.page/r/CdV-Ui6WJnEREAI/review'
 };
 
+export const ANALYTICS = {
+  // Google Tag ID — מתחיל ב-AW- (אם זה תג Google Ads) או G- (אם זה GA4).
+  // איפה מוצאים: Google Ads > כלים ⚙️ > המרות > "תג Google" (Google tag), או Google Analytics > Admin > Data Streams.
+  // כל עוד זה ריק — שום סקריפט מעקב לא נטען באתר.
+  googleTagId: 'G-WHHLMSYQGH',
+  // תווית ההמרה הספציפית (Conversion Label) — נוצרת כשמגדירים "פעולת המרה" חדשה בגוגל אדס:
+  // Tools > Conversions > New conversion action > Website. גוגל ייתן קוד כמו AW-123456789/AbC-D_efGHIjkLMN0 — מה שאחרי ה-/ זה התווית.
+  googleAdsConversionLabel: ''
+};
+
 export const SERVICES = [
   {
     slug: 'gizum-etzim',
